@@ -4,6 +4,11 @@
  *         - an integer representing a target sum
  * return: an array: with two numbers that sum up to the target sum, in any order
  * otherwise, return an empty array
+ * 
+ * test case: 
+ * [1, 2, 3, 4, 5], 7 => [3, 4]
+ * [1, 3, 2, 4, 5], 10 => []
+ * 
  */
 
 //runtime: o(n^2)
