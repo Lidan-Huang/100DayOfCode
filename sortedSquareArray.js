@@ -52,7 +52,7 @@ function sortedSquaredArray2(sortedInts) {
  * runtime: o(n) 
  */
 function sortedSquaredArray3(sortedInts) {
-  let squaredInts = [];
+  let squaredInts = [];  // let squaredInts = new Array(sortedInts.length).fill(0);
   let left = 0;
   let right = sortedInts.length - 1;
 
