@@ -31,7 +31,7 @@
 function findClosestValueInBst(tree, target) {
   let current = tree;
   let minDiff = Infinity;
-  let closestVal;
+  let closestVal = current.value;
   while (current !== null) {
     let diff = Math.abs(current.value - target);
     if (diff < minDiff) {
@@ -49,6 +49,26 @@ function findClosestValueInBst(tree, target) {
   }
 	
 	return closestVal;
+}
+
+function findClosestValueInBst2(tree, target) {
+  return helper(tree, target, tree.value);
+}
+
+function helper(tree, target, closest) {
+  if (tree === null) return closest;
+
+  if (Math.abs(target - closest) > Math.abs(target - tree.value)) {
+    closest = tree.value;
+  }
+  
+  if (tree.value < target) {
+    return helper(tree.right, target, closest);
+  } else if (tree.value > target) {
+    return helper(tree.left, target, closest);
+  } else {
+    return closest;
+  }
 }
 
 class BST {
