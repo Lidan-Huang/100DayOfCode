@@ -28,6 +28,7 @@
 
 // runtime: average O(logn) | O(1) space
 // worst runtime: O(n) | O(1) space
+// using while loop
 function findClosestValueInBst(tree, target) {
   let current = tree;
   let minDiff = Infinity;
@@ -51,6 +52,8 @@ function findClosestValueInBst(tree, target) {
 	return closestVal;
 }
 
+
+// using recursion
 function findClosestValueInBst2(tree, target) {
   return helper(tree, target, tree.value);
 }
