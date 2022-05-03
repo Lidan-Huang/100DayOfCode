@@ -27,10 +27,10 @@ function nonConstructibleChange(coins) {
 
   for (let coin of coins) {
     if (coin > change + 1) return change + 1;
-    
+
     change += coin;
   }
 
   return change + 1;
-
 } 
+
