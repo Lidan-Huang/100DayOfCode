@@ -26,7 +26,7 @@ function minWaitingTime(queries) {
   let sum = queries.reduce((a, b) => (a + b), 0);
   queries.sort((a, b) => a - b);
   let waitingTime = 0;
-  
+
   for (let i = queries.length - 1; i >= 0; i--) {
     sum -= queries[i];
     waitingTime += sum;
