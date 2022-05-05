@@ -45,11 +45,19 @@ function findClosestValueInBst(tree, target) {
     } else if (current.value > target) {
       current = current.left;
     } else {
-			break;
-		}
+      break;
+    }
   }
-	
-	return closestVal;
+
+  return closestVal;
+}
+
+class BST {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
 }
 
 
@@ -64,7 +72,7 @@ function helper(tree, target, closest) {
   if (Math.abs(target - closest) > Math.abs(target - tree.value)) {
     closest = tree.value;
   }
-  
+
   if (tree.value < target) {
     return helper(tree.right, target, closest);
   } else if (tree.value > target) {
@@ -74,12 +82,5 @@ function helper(tree, target, closest) {
   }
 }
 
-class BST {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
 
- 
+
