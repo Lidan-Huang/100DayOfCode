@@ -22,7 +22,7 @@
 //runtime: O(nlogn) | space: O(n-1) n is the items of the array
 function isMonotonicArray(array) {
   const len = array.length;
-  if (len === 0 || len === 1) return true;
+  if (len <= 2) return true;
   let diffs = [];
   for (let i = 0; i < len - 1; i++) {
     diffs.push((array[i + 1] - array[i]));
@@ -34,4 +34,48 @@ function isMonotonicArray(array) {
       return true;
     }
   return false;
+}
+
+//runtime: O(n) | space: O(1)
+function isMonotonicArray2(array) {
+  const len = array.length;
+  if (len <= 2) return true;
+
+  let diff = 0;
+  
+  for (let i = 0; i < len - 1; i++) {
+    if ((array[i+1] - array[i]) > diff) {
+      while (i < len - 1) {
+        if ((array[i+1] - array[i]) < diff) return false;
+        i++;
+      }
+    } else if ((array[i+1] - array[i]) < diff) {
+      while (i < len - 1) {
+        if ((array[i+1] - array[i]) > diff) return false;
+        i++;
+      }
+    }
+  }
+  return true;
+}
+
+function isMonotonicArray3(array) {
+  if (array.length <= 2) return true;
+
+  let direction = array[1] - array[0];
+  for (let i = 2; i < array.length; i++) {
+    if (direction === 0) {
+      direction = array[i] - array[i - 1];
+    }
+    if (breaksDirection(direction, array[i - 1], array[i])) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function breaksDirection(direction, previousInt, currentInt) {
+  const difference = currentInt - previousInt; 
+  if (direction > 0) return difference < 0;
+  return difference > 0;
 }
