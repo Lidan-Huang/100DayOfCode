@@ -20,6 +20,7 @@
  * 
  */
 
+//runtime: O(n) | space: O(1)
 function moveElementToEnd(array, toMove) {
   let left = 0;
   let right = array.length - 1;
@@ -50,5 +51,14 @@ function moveElementToEnd(array, toMove) {
   return array;
 }
 
-//[2, 2, 1, 4, 2, 3], 2 =>  
-//[3, 2, 4, 2, 2, 5], 2
+function moveElementToEnd2(array, toMove) {
+  let left = 0;
+  let right = array.length - 1;
+  
+  while ( left < right) {
+    while (left < right && array[right] === toMove) right--;
+    if (array[left] === toMove) [array[left], array[right]] = [array[right], array[left]];
+    left++;
+  }
+  return array;
+}
