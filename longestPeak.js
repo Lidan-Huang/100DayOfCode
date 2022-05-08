@@ -23,7 +23,7 @@
 
 
 function longestPeak(array) {
-  if(array.length <3) return false;
+  if(array.length <3) return 0;
   let peakLen = 0;
   let count = 3;
 
@@ -53,5 +53,34 @@ function longestPeak(array) {
       count = 3;
     } 
   }
+  return peakLen;
+}
+
+function longestPeak2(array) {
+  let peakLen = 0;
+  let idx = 1;
+
+  while (idx < array.length - 1) {
+    const isPeak = (array[idx] > array[idx - 1]) &&(array[idx] > array[idx + 1]);
+    if (!isPeak) {
+      idx++;
+      continue;
+    }
+
+    let left = idx - 2;
+    while (left >=0 && array[left] < array[left + 1]) {
+      left--;
+    }
+
+    let right = idx + 2;
+    while (right < array.length && array[right] < array[right - 1]) {
+      right++;
+    }
+
+    let currentPeak = right - left - 1;
+    peakLen = Math.max(peakLen, currentPeak);
+    idx = right;
+  }
+
   return peakLen;
 }
