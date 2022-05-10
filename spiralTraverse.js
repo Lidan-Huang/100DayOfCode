@@ -68,7 +68,7 @@ function spiralTraverse2(array) {
       result.push(array[i][right]);
     }
     right--;
-    if (right < left) break;
+    // if (right < left) break;
     for (let m = right; m >= left; m--) {
       if (bottom < top) break;
       result.push(array[bottom][m]);
