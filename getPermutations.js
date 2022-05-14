@@ -18,15 +18,15 @@ const res = require("express/lib/response");
 function getPermutations(array) {
   if (array.length === 1) return [array];
 
-  let result = []
+  let permutations = []
   for (let i = 0; i < array.length; i++) {
     let newArr = [...array];
     newArr.splice(i, 1);
-    let res = getPermutations(newArr);
-    for (let j=0; j< res.length; j++) {
-      res[j].unshift(array[i])
-      result.push(res[j]);
+    let currentPermutations = getPermutations(newArr);
+    for (let j=0; j< currentPermutations.length; j++) {
+      currentPermutations[j].unshift(array[i])
+      permutations.push(currentPermutations[j]);
     }
   }
-  return result;
+  return permutations;
 }
