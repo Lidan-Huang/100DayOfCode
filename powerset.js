@@ -21,3 +21,16 @@ function powerset(array) {
 }
 
 
+//runtime: O(n*2^n) | space: O(n*2^n)
+function powerset2(array, idx=array.length - 1) {	
+	if (idx < 0) return [[]];
+	
+	let item = array[idx];
+	let subsets = powerset(array, idx - 1);
+	let len = subsets.length;
+	for (let i = 0; i < len; i++) {
+		subsets.push(subsets[i].concat(item));
+	}
+	return subsets;
+}
+
