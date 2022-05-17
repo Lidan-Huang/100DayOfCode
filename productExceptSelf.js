@@ -18,3 +18,27 @@
  *  update right product: right = right * nums[i]
  * return answer
  */
+
+function productExceptSelf(nums) {
+  const answer = Array.from({length:nums.length}).fill(0);
+  //there's no element before nums[0], so assign answer[0] to 1
+  answer[0] = 1;
+
+  //store the product of left elements before current num to the 
+  //corresponding index of answer
+  for (let i = 1; i < nums.length; i++) {
+    answer[i] = answer[i - 1] * nums[i - 1];
+  }
+
+  //there's no element after the last element of nums, so assign right to 1
+  let right = 1;
+
+  //variable right stores the product of right elements of current num
+  //the value of current index in answer is left side product by right side of product
+  for (let i = nums.length - 1; i >=0; i--) {
+    answer[i] = answer[i] * right;
+    right *= nums[i];
+  }
+
+  return answer;
+}
