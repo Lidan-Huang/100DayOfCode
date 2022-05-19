@@ -20,7 +20,7 @@
  */
 
 function productExceptSelf(nums) {
-  const answer = Array.from({length:nums.length}).fill(0);
+  const answer = Array.from({ length: nums.length }).fill(0);
   //there's no element before nums[0], so assign answer[0] to 1
   answer[0] = 1;
 
@@ -35,7 +35,7 @@ function productExceptSelf(nums) {
 
   //variable right stores the product of right elements of current num
   //the value of current index in answer is left side product by right side of product
-  for (let i = nums.length - 1; i >=0; i--) {
+  for (let i = nums.length - 1; i >= 0; i--) {
     answer[i] = answer[i] * right;
     right *= nums[i];
   }
