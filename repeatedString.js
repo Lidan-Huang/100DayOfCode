@@ -17,14 +17,14 @@
 
 function repeatedString(s, n) {
   let count = 0;
-  const lengthOfS = s.length; 
+  const lengthOfS = s.length;
   let idxOfA = [];
   for (let i = 0; i < lengthOfS; i++) {
-    if (s[i] === "a") idxOfA.push(i); 
+    if (s[i] === "a") idxOfA.push(i);
   }
-  const numOfA = idxOfA.length; 
+  const numOfA = idxOfA.length;
 
-  const repeatTimes = Math.floor(n / lengthOfS); 2
+  const repeatTimes = Math.floor(n / lengthOfS);
   const remainder = n % lengthOfS;
 
   count = numOfA * repeatTimes;
