@@ -8,6 +8,7 @@
  * 
  * test case:
  * [[1, 2], [3, 5], [4, 7], [6, 8], [9, 10]] => [[1, 2], [3, 8], [9, 10]]
+ * [[1, 10], [2, 3], [4, 5], [6, 9]] => [[1, 10]]
  * 
  * pseudo code:
  * sort the array according the first number of subarray
