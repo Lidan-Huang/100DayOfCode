@@ -21,3 +21,86 @@
  * Each node has an integer value as well as a prev node and a next node, both of which
  * can point to either another node or None/null.
  */
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.prev = null;
+    this.next = null;
+  }
+}
+
+// Feel free to add new properties and methods to the class.
+class DoublyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  setHead(node) {
+    // Write your code here.
+    if (this.head === null) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.insertBefore(this.head, node);
+    }
+  }
+
+  setTail(node) {
+    //Write your code here.
+    if (this.tail === null) {
+      this.tail = node;
+      this.head = node;
+    } else {
+      this.insertAfter(this.tail, node);
+    }
+  }
+
+  insertBefore(node, nodeToInsert) {
+    // Write your code here.
+    if (nodeToInsert === this.head && nodeToInsert === this.tail) return;
+    this.remove(nodeToInsert);
+    nodeToInsert.prev = node.prev;
+    nodeToInsert.next = node;
+    if (node.prev === null) {
+      this.head = nodeToInsert;
+    } else {
+      node.prev.next = nodeToInsert;
+    }
+    node.prev = nodeToInsert;
+  }
+
+  insertAfter(node, nodeToInsert) {
+    // Write your code here.
+    if (nodeToInsert === this.head && nodeToInsert === this.tail) return;
+    this.remove(nodeToInsert);
+    nodeToInsert.next = node.next;
+    node.next = nodeToInsert;
+
+    if (node.next === null) {
+      this.tail = nodeToInsert;
+    } else {
+      node.next.prev = nodeToInsert;
+    }
+
+    nodeToInsert.prev = node;
+  }
+
+  insertAtPosition(position, nodeToInsert) {
+    // Write your code here.
+
+  }
+
+  removeNodesWithValue(value) {
+    // Write your code here.
+  }
+
+  remove(node) {
+    // Write your code here.
+  }
+
+  containsNodeWithValue(value) {
+    // Write your code here.
+  }
+}

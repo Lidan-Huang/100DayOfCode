@@ -1,7 +1,7 @@
 "use strict";
 
 /**given two non-empty arrays of integers with the same length
- * return true, if the number in the same position of second array is bigger thean the first array
+ * return true, if the number in the same position of second array is bigger than the first array
  * otherwise return false
  * 
  * test case:
