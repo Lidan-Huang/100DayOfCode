@@ -49,9 +49,35 @@ function removeKthNodeFromEnd(head, k) {
       nodesBeforeKth++;
     }
     current.next = current.next.next;
-  } else {   
+  } else {
     // head is the node that is removed, so mutate head to the head.next
     head.value = head.next.value;
     head.next = head.next.next;
   }
+}
+
+//solution two:
+function removeKthNodeFromEnd(head, k) {
+  //make sure second node and first node has n node's gap
+  let count = 1;
+  let first = head;
+  let second = head;
+  while (count <= k) {
+    second = second.next;
+    count++;
+  }
+
+  //the kth node is the head
+  if (second.next === null) {
+    head.value = head.next.value;
+    head.next = head.next.next;
+    return;
+  }
+
+  //second node is last node, and first node is right before removed node
+  while (second.next !== null) {
+    second = second.next;
+    first = first.next;
+  }
+  first.next = first.next.next;
 }
