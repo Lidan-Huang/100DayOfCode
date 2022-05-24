@@ -29,8 +29,6 @@ class Node {
     this.next = null;
   }
 }
-
-// Feel free to add new properties and methods to the class.
 class DoublyLinkedList {
   constructor() {
     this.head = null;
@@ -38,7 +36,7 @@ class DoublyLinkedList {
   }
 
   setHead(node) {
-    // Write your code here.
+    // if Linked List is empty, set the node to head and tail
     if (this.head === null) {
       this.head = node;
       this.tail = node;
@@ -48,7 +46,7 @@ class DoublyLinkedList {
   }
 
   setTail(node) {
-    //Write your code here.
+    // if Linked List is empty, set the node to head and tail
     if (this.tail === null) {
       this.tail = node;
       this.head = node;
@@ -58,11 +56,13 @@ class DoublyLinkedList {
   }
 
   insertBefore(node, nodeToInsert) {
-    // Write your code here.
+    // Linked List only has one node, and nodeToInsert is the only node
     if (nodeToInsert === this.head && nodeToInsert === this.tail) return;
+
     this.remove(nodeToInsert);
     nodeToInsert.prev = node.prev;
     nodeToInsert.next = node;
+
     if (node.prev === null) {
       this.head = nodeToInsert;
     } else {
@@ -72,23 +72,24 @@ class DoublyLinkedList {
   }
 
   insertAfter(node, nodeToInsert) {
-    // Write your code here.
+    // Linked List only has one node, and nodeToInsert is the only node, directly return
     if (nodeToInsert === this.head && nodeToInsert === this.tail) return;
+
     this.remove(nodeToInsert);
     nodeToInsert.next = node.next;
-    node.next = nodeToInsert;
+    nodeToInsert.prev = node;
 
     if (node.next === null) {
       this.tail = nodeToInsert;
     } else {
       node.next.prev = nodeToInsert;
     }
+    node.next = nodeToInsert;
 
-    nodeToInsert.prev = node;
   }
 
   insertAtPosition(position, nodeToInsert) {
-    // Write your code here.
+    // insert node before head
     if (position === 1) {
       this.setHead(nodeToInsert);
       return;
@@ -101,42 +102,43 @@ class DoublyLinkedList {
     }
 
     if (currentNode !== null) {
-      insertBefore(currentNode, nodeToInsert);
+      this.insertBefore(currentNode, nodeToInsert);
     } else {
+      // insert node after tail
       this.setTail(nodeToInsert);
     }
-
   }
 
   removeNodesWithValue(value) {
-    // Write your code here.
     let currentNode = this.head;
     while (currentNode !== null) {
       let nodeToRemove = currentNode;
       currentNode = currentNode.next;
-      if (currentNode.value === value) {
+      if (nodeToRemove.value === value) {
         this.remove(nodeToRemove);
       }
     }
   }
 
   remove(node) {
-    // Write your code here.
     if (node === this.head) {
       this.head = this.head.next;
-      node.next === null;
-    } else if (node === this.tail) {
-      this.tail = this.tail.prev;
-      node.prev === null
-    } else {
-      node.prev.next = node.next;
-      node.next.prev = node.prev;
-      node.prev = null;
-      node.next = null;
     }
+    if (node === this.tail) {
+      this.tail = this.tail.prev;
+    }
+    if (node.prev !== null) node.prev.next = node.next;
+    if (node.next !== null) node.next.prev = node.prev;
+    node.prev = null;
+    node.next = null;
+
   }
 
   containsNodeWithValue(value) {
-    // Write your code here.
+    let currentNode = this.head;
+    while (currentNode !== null && currentNode.value !== value) currentNode = currentNode.next;
+    return currentNode !== null;
   }
 }
+
+
