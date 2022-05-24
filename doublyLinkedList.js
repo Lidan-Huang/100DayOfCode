@@ -110,6 +110,14 @@ class DoublyLinkedList {
 
   removeNodesWithValue(value) {
     // Write your code here.
+    let currentNode = this.head;
+    while (currentNode !== null) {
+      let nodeToRemove = currentNode;
+      currentNode = currentNode.next;
+      if (currentNode.value === value) {
+        this.remove(nodeToRemove);
+      }
+    }
   }
 
   remove(node) {
