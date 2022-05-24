@@ -122,6 +122,18 @@ class DoublyLinkedList {
 
   remove(node) {
     // Write your code here.
+    if (node === this.head) {
+      this.head = this.head.next;
+      node.next === null;
+    } else if (node === this.tail) {
+      this.tail = this.tail.prev;
+      node.prev === null
+    } else {
+      node.prev.next = node.next;
+      node.next.prev = node.prev;
+      node.prev = null;
+      node.next = null;
+    }
   }
 
   containsNodeWithValue(value) {
