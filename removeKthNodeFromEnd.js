@@ -19,3 +19,39 @@
  * remove the Kth node from the LinkedList, here need to check whether Kth node
  * is the head node or not
  */
+
+class LinkedList {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+//solution one:
+function removeKthNodeFromEnd(head, k) {
+  let current = head;
+  let nodeCounts = 0;
+  //count all the nodes of the SLL
+  while (current !== null) {
+    current = current.next;
+    nodeCounts++;
+  }
+  console.log("nodeCounts:", nodeCounts);
+
+  let positionOfRemovedNode = nodeCounts - k + 1;
+  let nodesBeforeKth = 1;
+  current = head;
+
+  // if the removed node is not the first head
+  if (positionOfRemovedNode !== 1) {
+    while ((positionOfRemovedNode - nodesBeforeKth) > 1) {
+      current = current.next;
+      nodesBeforeKth++;
+    }
+    current.next = current.next.next;
+  } else {   
+    // head is the node that is removed, so mutate head to the head.next
+    head.value = head.next.value;
+    head.next = head.next.next;
+  }
+}
