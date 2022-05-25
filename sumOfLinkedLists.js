@@ -34,6 +34,8 @@ class LinkedList {
   }
 }
 
+
+//solution one:
 function sumOfLinkedLists(linkedListOne, linkedListTwo) {
   // Write your code here.
   let linkedListSum = new LinkedList(0);
@@ -79,5 +81,36 @@ function sumOfLinkedLists(linkedListOne, linkedListTwo) {
     currentNode = newNode;
   }
 
+  return linkedListSum.next;
+}
+
+//solution two:
+function sumOfLinkedLists2(linkedListOne, linkedListTwo) {
+  // make a dummy node: linkedListSum
+  let linkedListSum = new LinkedList(0);
+  let currentNode = linkedListSum;
+
+  //if firstValue is 5, secondValue is 7, div should be 1
+  let div = 0;
+  let first = linkedListOne;
+  let second = linkedListTwo;
+
+  while (first !== null || second !== null || div !== 0) {
+    const firstValue = first !== null ? first.value : 0;
+    const secondValue = second !== null ? second.value : 0;
+    const sum = firstValue + secondValue + div;
+
+    //newValue will be the value added to the newNode
+    let newValue = sum % 10;
+    let newNode = new LinkedList(newValue);
+    currentNode.next = newNode;
+    currentNode = newNode;
+
+    //update div and first node and second node
+    div = Math.floor(sum / 10);
+    first = first !== null ? first.next : null;
+    second = second !== null ? second.next : null;
+  }
+  // as linkedlistSum is dummy node, so we need to return its next node as head node
   return linkedListSum.next;
 }
