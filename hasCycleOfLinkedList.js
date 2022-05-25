@@ -22,3 +22,21 @@
  * return false
  */
 
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
+
+
+//runtime: O(n) | space complexity: O(n), n is the nodes of linked list
+function hasCycleOfLinkedList(head) {
+  let nodes = new Set();
+  let currentNode = head;
+
+  while (currentNode !== null) {
+    if (nodes.has(currentNode)) return true;
+    nodes.add(currentNode);
+    currentNode = currentNode.next;
+  }
+  return false;
+};
