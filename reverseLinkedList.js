@@ -23,7 +23,8 @@ function ListNode(val, next) {
   this.next = (next === undefined ? null : next)
 }
 
-var reverseList = function (head) {
+/**solution one: */
+function reverserLinkedList(head) {
   let values = [];
   let currentNode = head;
   if (currentNode === null) return head;
@@ -40,4 +41,19 @@ var reverseList = function (head) {
   }
 
   return head;
+};
+
+
+/**solution two: */
+function reverseLinkedList2(head) {
+  let prev = null;
+  let currentNode = head;
+
+  while (currentNode !== null) {
+    let tempNode = currentNode.next;
+    currentNode.next = prev;
+    prev = currentNode;
+    currentNode = tempNode;
+  }
+  return prev;
 };
