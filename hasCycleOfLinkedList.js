@@ -40,3 +40,17 @@ function hasCycleOfLinkedList(head) {
   }
   return false;
 };
+
+
+//runtime: O(n+m) | space complexity: O(1), n is the nodes of linked list
+// m is the nodes of the cycles
+function hasCycleOfLinkedList2(head) {
+  let slow = head;
+  let fast = head;
+  while (fast !== null && fast.next !== null) {
+    fast = fast.next.next;
+    slow = slow.next;
+    if (fast === slow) return true;
+  }
+  return false;
+}
