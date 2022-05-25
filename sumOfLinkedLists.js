@@ -26,3 +26,58 @@
  *    - new Linked List move to next node
  * return new Linked List
  */
+
+class LinkedList {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+function sumOfLinkedLists(linkedListOne, linkedListTwo) {
+  // Write your code here.
+  let linkedListSum = new LinkedList(0);
+  let currentNode = linkedListSum
+  let first = linkedListOne;
+  let second = linkedListTwo;
+  let div = 0;
+  while (first !== null && second !== null) {
+    let sum = first.value + second.value + div;
+    let newValue = sum % 10;
+    let newNode = new LinkedList(newValue)
+    currentNode.next = newNode;
+    currentNode = newNode;
+
+    div = Math.floor(sum / 10);
+    first = first.next;
+    second = second.next;
+  }
+
+  while (first === null && second !== null) {
+    let sum = second.value + div;
+    let newValue = sum % 10;
+    let newNode = new LinkedList(newValue)
+    currentNode.next = newNode;
+    currentNode = newNode;
+    div = Math.floor(sum / 10);
+    second = second.next;
+  }
+
+  while (second === null && first !== null) {
+    let sum = first.value + div;
+    let newValue = sum % 10;
+    let newNode = new LinkedList(newValue)
+    currentNode.next = newNode;
+    currentNode = newNode;
+
+    div = Math.floor(sum / 10);
+    first = first.next;
+  }
+  if (second === null && first === null && div !== 0) {
+    let newNode = new LinkedList(div);
+    currentNode.next = newNode;
+    currentNode = newNode;
+  }
+
+  return linkedListSum.next;
+}
