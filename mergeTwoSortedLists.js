@@ -16,3 +16,28 @@
  * return head of merged linked list
  */
 
+
+
+function mergeTwoLists(list1, list2) {
+  let prevHead = new ListNode(0);
+  //make a dummy node
+  let prevNode = prevHead;
+  let current1 = list1;
+  let current2 = list2;
+
+  while (current1 !== null && current2 !== null) {
+    if (current1.val <= current2.val) {
+      prevNode.next = current1;
+      current1 = current1.next;
+    } else {
+      prevNode.next = current2;
+      current2 = current2.next;
+    }
+    
+    prevNode = prevNode.next;
+  }
+
+  prevNode.next = current1 === null ? current2 : current1;
+
+  return prevHead.next;
+};
