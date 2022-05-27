@@ -16,7 +16,10 @@
  * return head of merged linked list
  */
 
-
+function ListNode(val, next) {
+  this.val = this.val === undefined ? 0 : val;
+  this.next = this.next === undefined ? null : next;
+}
 
 function mergeTwoLists(list1, list2) {
   let prevHead = new ListNode(0);
@@ -33,7 +36,7 @@ function mergeTwoLists(list1, list2) {
       prevNode.next = current2;
       current2 = current2.next;
     }
-    
+
     prevNode = prevNode.next;
   }
 
