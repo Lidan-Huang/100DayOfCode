@@ -19,3 +19,22 @@
  *  check if the longestStr length is bigger than longest, assign the length to the longest
  * return longest
  */
+
+function longestSubstringWithoutRepeating(s) {
+  let longest = 0;
+  let longestStr = "";
+
+  for (let char of s) {
+    if (longestStr.includes(char)) {
+      let idx = longestStr.indexOf(char);
+      let subStr = longestStr.slice(idx + 1);
+      longestStr = subStr.concat(char);
+    } else {
+      longestStr += char;
+    }
+    if (longestStr.length > longest) {
+      longest = longestStr.length;
+    }
+  }
+  return longest;
+};
