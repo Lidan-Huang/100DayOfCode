@@ -25,3 +25,18 @@
  * return true
  */
 
+function isValidParentheses(str) {
+  const openSet = new Set(['(', '[', '{']);
+  const pairMap = new Map([['(', ')'], ['[', ']'], ['{', '}']]);
+  let stack = [];
+
+  for (let elem of str) {
+    if (openSet.has(elem)) {
+      stack.push(elem);
+    } else {
+      let top = stack.pop();
+      if (elem !== pairMap.get(top)) return false;
+    }
+  }
+  return stack.length === 0;
+}
