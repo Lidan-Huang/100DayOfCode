@@ -8,7 +8,7 @@
  * 
  * test case:
  * 'abcdcaf' => 1 (b is the first one)
- * 'abcabd" => -1
+ * 'abcabc" => -1
  * 
  * psudocode:
  * get frequency of the string
