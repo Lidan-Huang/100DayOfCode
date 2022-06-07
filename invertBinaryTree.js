@@ -13,3 +13,23 @@
  * there's no more nodes
  * return rootnode
  */
+
+/** Definition for a binary tree node.
+  * function TreeNode(val, left, right) {
+  *     this.val = (val===undefined ? 0 : val)
+  *     this.left = (left===undefined ? null : left)
+  *     this.right = (right===undefined ? null : right)
+  * }
+  */
+
+function invertBinaryTree(root) {
+  if (root === null) return null;
+
+  let tempNode = root.left;
+  root.left = root.right;
+  root.right = tempNode;
+  invertBinaryTree(root.left);
+  invertBinaryTree(root.right);
+
+  return root;
+}
