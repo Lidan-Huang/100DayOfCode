@@ -22,6 +22,7 @@
   * }
   */
 
+//time complexity O(n) || space complexity O(n), n is the number of the nodes
 function invertBinaryTree(root) {
   if (root === null) return null;
 
