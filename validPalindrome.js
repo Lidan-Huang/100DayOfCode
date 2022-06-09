@@ -20,3 +20,19 @@
  *        else left++, right--
  * return true
  */
+
+//runtime: O(n) | space: O(1)
+function validPalindrome(s) {
+  const alphanumeric = "abcdefghijklmnopqrstuvwxyz0123456789";
+  let left = 0;
+  let right = s.length - 1;
+
+  while (left < right) {
+    while (!alphanumeric.includes(s[left].toLowerCase()) && left < right) left++;
+    while (!alphanumeric.includes(s[right].toLowerCase()) && left < right) right--;
+    if (s[left].toLowerCase() !== s[right].toLowerCase()) return false;
+    left++;
+    right--;
+  }
+  return true;
+}
