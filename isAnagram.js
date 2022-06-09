@@ -16,3 +16,24 @@
  * 
  * return true
  */
+
+
+//runtime: O(n) | space: O(n+m)
+function isAnagram(s, t) {
+  const freqS = getFrequency(s);
+  const freqT = getFrequency(t);
+  if (freqS.size !== freqT.size) return false;
+  for (let key of freqT.keys()) {
+    if (!(freqS.has(key) && freqS.get(key) === freqT.get(key))) return false;
+  }
+  return true;
+};
+
+function getFrequency(str) {
+  let freq = new Map();
+  for (let char of str) {
+    let count = freq.get(char) || 0;
+    freq.set(char, count + 1);
+  }
+  return freq;
+}
