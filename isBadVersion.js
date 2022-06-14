@@ -16,3 +16,22 @@
  * once meet isBadVersion(i) is true, return i
  */
 
+//runtime: O(n) | space: O(1)
+function solution1(isBadVersion) {
+  return function version(n) {
+    for (let i = 1; i <= n; i++) {
+      // once hit the first bad version, return the index
+      if (isBadVersion(i)) return i;
+    }
+  }
+}
+
+function solution2(isBadVersion) {
+  return function version(n) {
+    if (isBadVersion(1)) return 1;
+    for (let i = n; i > 0; i--) {
+      if (!isBadVersion(i)) return i + 1;
+    }
+  }
+}
+
