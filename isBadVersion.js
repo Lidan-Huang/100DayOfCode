@@ -2,7 +2,7 @@
 
 /**
  * accepts: an array of n versions[1, 2, ..., n]
- * returns: returns the first bad version that causes all the following ones to be bad
+ * returns: the first bad version that causes all the following ones to be bad
  * 
  * given an API bool isBadVersion(version), which returns whether version is bad
  * you should minimize the number of calls to the API
@@ -35,3 +35,25 @@ function solution2(isBadVersion) {
   }
 }
 
+
+//runtime: O(logn) | space: O(1)
+function solution3(isBadVersion) {
+  return function version(n) {
+    let left = 1;
+    let right = n;
+    let result;
+    while(left <= right) {
+      let middle = Math.floor((left + right) / 2);
+      if (isBadVersion(middle) === false) {
+        left = middle + 1;
+      } else {
+        result = middle;
+        right = middle - 1;
+      }
+    }
+    //if just return middle, and first middle is the only first bad one, the
+    //result will be wrong, like n=5, bad=3; so make a variable result to 
+    //track the first bad version
+    return result;
+  }
+}
