@@ -19,3 +19,21 @@
  * if one array is empty, make the value to 0
  * join the result array to a string and reverse it
  */
+
+//runtime: O(n) | space: O(n), n is the longer length of a and b
+function addBinary(a, b) {
+  const numsOfA = a.split('');
+  const numsOfB = b.split('');
+  let sums = [];
+  let carrier = 0;
+
+  while (numsOfA.length !== 0 || numsOfB.length !== 0) {
+    const valueA = numsOfA.length === 0 ? 0 : +numsOfA.pop();
+    const valueB = numsOfB.length === 0 ? 0 : +numsOfB.pop();
+    let sum = valueA + valueB + carrier;
+    sums.push(sum % 2);
+    carrier = Math.floor(sum / 2);
+  }
+  if (carrier > 0) sums.push(carrier);
+  return sums.reverse().join('');
+}
