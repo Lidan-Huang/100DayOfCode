@@ -25,3 +25,9 @@ function climbStairs(n) {
   }
   return climbStairs_helper(0, n);
 }
+
+function climbStairs2(n) {
+  if (n === 1) return 1;
+  if (n === 2) return 2;
+  return climbStairs(n - 1) + climbStairs(n - 2);
+}
