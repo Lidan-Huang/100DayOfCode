@@ -17,3 +17,20 @@
  * 
  * return maximum count's number value
  */
+
+//runtime: O(n) | space: O(n)
+function majorityElement(nums) {
+  let maxCount = 0;
+  let result = 0;
+  let freq = new Map();
+
+  for (let num of nums) {
+    let count = freq.get(num) + 1 || 1;
+    freq.set(num, count);
+    if (maxCount < count) {
+      maxCount = count;
+      result = num;
+    }
+  }
+  return result;
+}
