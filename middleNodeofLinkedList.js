@@ -13,3 +13,28 @@
  * the middle node should be Math.floor(count / 2) + 1
  * find the middle node according to the number, and return the middle node
  */
+
+function ListNode(val, next) {
+  this.val = (val === undefined ? 0: val);
+  this.next = (next === undefined ? 0: next);
+}
+//runtime: O(n) | space: O(1)
+function middleNode(head) {
+  let currentNode = head;
+  let count = 0;
+  //count the node numbers of the linked list
+  while (currentNode !== null) {
+    count++;
+    currentNode = currentNode.next;
+  }
+
+  const middle = Math.floor(count / 2) + 1;
+  let currentCount = 1;
+  while (currentCount < middle) {
+    head = head.next;
+    currentCount++;
+  }
+  return head;
+}
+
+
