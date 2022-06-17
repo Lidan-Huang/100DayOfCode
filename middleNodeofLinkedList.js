@@ -38,3 +38,14 @@ function middleNode(head) {
 }
 
 
+//using slow and fast pointers
+function middleNode2(head) {
+  let fast = head;
+  let slow = head; 
+
+  while (fast !== null && fast.next !== null) {
+    fast = fast.next.next;
+    slow = slow.next;
+  }
+  return slow;
+}
