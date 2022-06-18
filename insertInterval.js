@@ -15,3 +15,22 @@
  * loop through the array, compair each item's start and end value to the new interval
  * find the right position of the new interval
  */
+
+//runtime: O(n) | space: O(n), n is the length of the array
+function insertInterval(intervals, newInterval) {
+  let result = [];
+
+  for (let interval of intervals) {
+    if (newInterval[1] < interval[0]) {
+      result.push(newInterval);
+      newInterval = interval;
+    } else if (newInterval[0] > interval[1]) {
+      result.push(interval);
+    } else {
+      newInterval[0] = Math.min(newInterval[0], interval[0]);
+      newInterval[1] = Math.max(newInterval[1], interval[1]);
+    }
+  }
+  result.push(newInterval);
+  return result;
+}
