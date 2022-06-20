@@ -30,10 +30,12 @@
 //runtime: O(nlogn) + O(n^2) | space: O(n)
 
 function threeSum(nums) {
-  nums.sort();
+  //if there're negative numbers in the array, need to explictly (a-b) to sort
+  nums.sort((a, b) => a - b);
   let result = [];
 
   for (let i= 0; i < nums.length - 2; i++) {
+    //make sure there's no duplicate triplets
     if (i > 0 && nums[i] === nums[i - 1]) continue;
 
     let left = i + 1;
@@ -47,8 +49,9 @@ function threeSum(nums) {
         left++;
         right--;
         
-        while (left < right) {
-          if (nums[left] === nums[left - 1]) left++;
+        //make sure there's no duplicate when finding two numbers
+        while (left < right && nums[left] === nums[left - 1]) {
+          left++;
         }
       }
     }
