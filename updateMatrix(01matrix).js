@@ -22,4 +22,35 @@
  */
 
 
+//runtime: O(n*m) | space: O(n*m), n is the length of the mat, and m is each
+//array's length
+function updateMatrix(mat) {
+  const row = mat.length;
+  const col = mat[0].length;
+  let result = new Array(row).fill().map(() => new Array(col).fill(0));
 
+  //if current cell value is 0, just add 0 to the corresponding row-col;
+  //if the value is 1, add minimum top and left value + 1 to the current cell
+  for (let i = 0; i < row; i++) {
+    for (let j = 0; j < col; j++) {
+      if (mat[i][j] === 0) result[i][j] = 0;
+      if (mat[i][j] === 1) {
+        let left = j > 0 ? result[i][j - 1] : Infinity;
+        let top = i > 0 ? result[i - 1][j] : Infinity;
+        let currentValue = Math.min(left, top) + 1;
+        result[i][j] = currentValue;
+      }
+    }
+  }
+
+  //check current cell, right and bottom cell's value, update the minimum value
+  //of the three cells to the current cell
+  for (let i = row - 1; i >= 0; i--) {
+    for (let j = col - 1; j >= 0; j--) {
+      let right = j < col - 1 ? result[i][j + 1] : Infinity;
+      let bottom = i < row - 1 ? result[i + 1][j] : Infinity;
+      result[i][j] = Math.min(result[i][j], (Math.min(right, bottom) + 1));
+    }
+  }
+  return result;
+}
