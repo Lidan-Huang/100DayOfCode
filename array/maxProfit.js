@@ -15,3 +15,19 @@
  *  - prices = [7, 6, 5, 4, 3, 2, 1] => 0
  */
 
+function maxProfit(prices) {
+  let max = 0;
+  if (prices.length < 2) return max;
+
+  let left = 0;
+  let right = 1;
+
+  while (right < prices.length) {
+    let diff = prices[right] - prices[left];
+    if (diff > 0) max += diff;
+    left++;
+    right++;
+  }
+
+  return max;
+}
