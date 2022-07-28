@@ -27,6 +27,8 @@ function removeDuplicates(nums) {
 
   let right = 1;
   while (right < nums.length) {
+    // only when left and right are next to each other, if the two numbers are 
+    // different, both left and right move to the right for one step
     if (nums[left] !== nums[right]) {
       left++;
       right++;
@@ -37,6 +39,8 @@ function removeDuplicates(nums) {
       right++;
     }
 
+    // why right don't need to right++, as for the example [1, 1, 2, 3], if
+    // right++, the result will be [1, 2, 2, 3]
     if (nums[right]) {
       nums[left + 1] = nums[right];
       left++;
