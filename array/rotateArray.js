@@ -14,3 +14,30 @@
  * reverse the first  k elements, and reverse the latter part, from index k to 
  * length - 1
  */
+
+function rotateArray(nums, k) {
+  k = k % nums.length;
+
+  // reverse original array
+  let left = 0;
+  let right = nums.length - 1;
+  reverseArray(nums, left, right);
+
+  // reverse the first k elements
+  left = 0;
+  right = k - 1;
+  reverseArray(nums, left, right);
+
+  // reverse the left elements start from index k to end
+  left = k
+  right = nums.length - 1
+  reverseArray(nums, left, right)
+}
+
+function reverseArray(nums, left, right) {
+  while (left < right) {
+    [nums[left], nums[right]] = [nums[right], nums[left]];
+    left++;
+    right--;
+  }
+}

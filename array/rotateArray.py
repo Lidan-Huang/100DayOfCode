@@ -3,9 +3,6 @@ from typing import List
 def rotate_array(nums: List[int], k: int) -> None:
     """
     Rotate array to the right of k steps in-place.
-
-    >>> rotate_array([1, 2, 3, 4, 5, 6, 7], 3)
-    [5, 6, 7, 1, 2, 3, 4]
     """
     k = k % len(nums)
 
@@ -23,7 +20,6 @@ def rotate_array(nums: List[int], k: int) -> None:
     left = k
     right = len(nums) - 1
     reverse_array(nums, left, right)
-    print("nums:", nums)
 
 
 def reverse_array(nums: List[int], left: int, right: int) -> None:
