@@ -16,3 +16,17 @@
  * return -1 (if not find)
  */
 
+function firstUniqueChar(s) {
+  let freq = {};
+
+  for (let char of s) {
+    let count = freq[char] || 0;
+    freq[char] = count + 1;
+  }
+
+  for (let i = 0; i < s.length; i++) {
+    if (freq[s[i]] === 1) return i;
+  }
+
+  return -1;
+}
