@@ -81,3 +81,29 @@ function removeKthNodeFromEnd(head, k) {
   }
   first.next = first.next.next;
 }
+
+
+//solution three:
+var removeNthFromEnd = function (head, n) {
+  let dummy = new ListNode();
+  dummy.next = head
+  let length = 0;
+  let current = head;
+  while (current) {
+    length++;
+    current = current.next;
+  }
+
+  let first = dummy;
+
+  //length means how many nodes before the deleted node
+  length -= n;
+
+  while (length > 0) {
+    first = first.next;
+    length--;
+  }
+  first.next = first.next.next;
+  return dummy.next;
+
+};
