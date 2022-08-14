@@ -25,3 +25,18 @@ function isPrime(num) {
   return true;
 }
 
+
+function countPrimes2(n) {
+  let count = 0;
+  let nums = Array.from({ length: n }).fill(true);
+
+  for (let i = 2; i < n; i++) {
+    if (nums[i]) {
+      count++;
+      for (let j = i * i; j < n; j += i) {
+        nums[j] = false;
+      }
+    }
+  }
+  return count;
+};
