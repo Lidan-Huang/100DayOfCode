@@ -19,3 +19,28 @@
  * loop through from the end of both array
  * compare two integer, put bigger one to the end of the nums1
  */
+
+
+function mergeTwoSortedArray(nums1, m, nums2, n) {
+  let right = m + n - 1;
+  let i = m;
+  let j = n;
+
+  while (i > 0 && j > 0) {
+    if (nums1[i - 1] <= nums2[j - 1]) {
+      nums1[right] = nums2[j - 1];
+      j--;
+    } else {
+      nums1[right] = nums1[i - 1];
+      i--;
+    }
+
+    right--;
+  }
+
+  while (i === 0 && j > 0) {
+    nums1[right] = nums2[j - 1];
+    j--;
+    right--;
+  }
+}
