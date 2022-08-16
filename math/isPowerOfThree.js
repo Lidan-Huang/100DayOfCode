@@ -19,3 +19,15 @@
  * if n is equal 1, return true
  */
 
+//runtime: O(n) | space: O(1)
+function isPowerOfThree(n) {
+  if (n % 2 === 0 || n < 1) return false;
+
+  while (n >= 3) {
+    if (n % 3 !== 0) return false;
+    n = n / 3;
+  }
+
+  if (n === 1) return true;
+}
+
