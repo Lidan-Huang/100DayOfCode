@@ -15,3 +15,9 @@
  * n = 2, return 2
  * n >= 3, return (n-1) + (n-2)
  */
+
+function climbingStairs(n) {
+  if (n === 1) return 1;
+  if (n === 2) return 2;
+  return climbingStairs(n - 1) + climbingStairs(n - 2);
+}
