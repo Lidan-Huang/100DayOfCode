@@ -20,7 +20,7 @@
  * compare two integer, put bigger one to the end of the nums1
  */
 
-
+//merge two sorted array in place
 function mergeTwoSortedArray(nums1, m, nums2, n) {
   let right = m + n - 1;
   let i = m;
