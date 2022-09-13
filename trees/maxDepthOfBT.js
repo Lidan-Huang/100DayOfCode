@@ -20,3 +20,49 @@
  *     this.right = (right===undefined ? null : right)
  * }
  */
+
+// solution 1: recursion
+function maxDepth1 (root) {
+  if (!root) return 0;
+  return 1 + Math.max(maxDepth1(root.left), maxDepth1(root.right));
+}
+
+// solution 2: BFS
+function maxDepth2(root) {
+  if (!root) return 0;
+
+  let q = [root];
+  let layer = 0;
+
+  while (q.length) {
+    let len = q.length;
+
+    for (let i = 0; i < len; i++) {
+      let node = q.shift();
+      if (node.left) q.push(node.left);
+      if (node.right) q.push(node.right);
+    }
+    layer++;
+  }
+
+  return layer;
+}
+
+// solution 3: DFS
+function maxDepth3(root) {
+  let stack = [[root, 1]];
+  let result = 0;
+
+  while (stack.length) {
+    let [node, layer] = stack.pop();
+
+    if (node) {
+      result = Math.max(result, layer);
+      stack.push(node.left);
+      stack.push(node.right);
+    }
+  }
+  return result;
+}
+
+//in JavaScript, empty array or object is true
