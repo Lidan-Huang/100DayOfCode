@@ -43,4 +43,23 @@ function isAnagram(str1, str2) {
   return str1.split("").sort().join("") === str2.split("").sort().join("")
 }
 
-//solution2:
+//solution2:sorted each word of strs, make a hashtable to store the results, 
+//loop through the sortedStrs, if the key is already in hash table, push the word
+//in corresponding index of strs to hashtable's corresponding key's value(array),
+//otherwise, make a new key-value pair and added to hashtable
+//return all the values of the hash table
+function groupAnagrams2(strs) {
+  const sortedStrs = strs.map(word => word.split("").sort().join(""));
+
+  let freq = {};
+
+  for (let i = 0; i < sortedStrs.length; i++) {
+    if (sortedStrs[i] in freq) {
+      freq[sortedStrs[i]].push(strs[i]);
+    } else {
+      freq[sortedStrs[i]] = [strs[i]];
+    }
+  }
+
+  return Object.values(freq);
+};
