@@ -22,3 +22,45 @@
  *    countAndSay(3) = say "11" = two 1's = "21"
  *    countAndSay(4) = say "21" = one 2 + one 1 = "12" + "11" = "1211"
  */
+
+
+function countAndSay(n) {
+  if (n < 1) return "";
+  let result = "1";
+
+  while (n > 1) {
+    let pairs = strToPairs(result);
+    result = pairsToStr(pairs);
+    n--;
+  }
+
+  return result;
+};
+
+function strToPairs(str) {
+  let pairs = [];
+  let count = 1;
+
+  for (let i = 1; i < str.length; i++) {
+    if (str[i - 1] === str[i]) {
+      count++;
+    } else {
+      pairs.push([count, +str[i - 1]]);
+      count = 1;
+    }
+  }
+  pairs.push([count, +str[str.length - 1]]);
+
+  return pairs;
+}
+
+function pairsToStr(pairs) {
+  let str = "";
+
+  for (let pair of pairs) {
+    str += pair[0];
+    str += pair[1];
+  }
+
+  return str;
+}
