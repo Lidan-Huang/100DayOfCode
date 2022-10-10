@@ -6,6 +6,7 @@
  */
 
 function numberOfHighlyProfitMonth(arr, k) {
+  if (k === 1) return arr.length;npm 
   let count = 0;
   let left = 0;
   let right = 1;
