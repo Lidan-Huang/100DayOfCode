@@ -83,6 +83,8 @@ function textJustify(str, maxWidth) {
       i++;
     } else {
       let spaces = maxWidth - currLen + currLine.length;
+      //edgecase: if there's only one word in one line, but this line is not the
+      //the last line, need to put all the space at the end of the word
       if (currLine.length === 1) {
         for (let i = 0; i < spaces; i++) {
           currLine[0] += " ";
